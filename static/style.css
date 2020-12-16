@@ -17,6 +17,15 @@ body {
     justify-items: center;
 } 
 
+.content {
+    display: flex;
+    width: 80vw;
+    padding: 1rem;
+    margin: 0.5rem;
+    border-radius: 6px;
+    background-color: var(--second-color);
+    box-shadow: var(--shadow);
+}
 
 h1 {
     margin: 1rem;

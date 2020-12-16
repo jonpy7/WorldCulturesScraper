@@ -8,16 +8,45 @@
 <h1>
     World Cultures
 </h1>
+<p>
+    Welcome to this Big Data solution to leverage Every Culture Encylopedia to learn about all cultures existing in the world.
+</p>
+<p>
+   <a href="https://www.everyculture.com/">https://www.everyculture.com/</a> 
+</p>
+
+<p>
+    The purpose of this research project is to do some data analytics to summarize important data like how many cultures exists in the world, per country, and continents.
+    <br>
+    At a later phase the objective is to learn things that are commong among cultures. Likewise, what food they eat, to answer the common saying <strong>
+    "That you are what you Eat".
+    </strong>
+
+    <br>
+    Also, we can partner with the Encylopedia owner to help maintaining the info current and accurate. Like providing a better view to see where there is missing data.
+</p>
 
 <div>
-    {% for row in data %}
         <div>
-            <h2>{{row.Culture}}: {{row.CultureCountryGroup}}</h2>
-            <a href={{row.CountryGroupURL}}>Learn more here</a>
-            
+            {% for row in data %}
+            <ol>
+                <li>
+                    <h2>{{row.Culture}}: {{row.CultureCountryGroup}}</h2> 
+                    <p>
+                        <a href="{{row.CountryGroupURL}}">{{row.CountryGroupURL}}</a>
+                    </p>
+                </li>
+            </ol>
+            <!-- <p>
+                <a href="{{row.CountryGroupURL}}">{{row.CountryGroupURL}}</a>
+            </p> --> 
+            {% endfor %}
         </div>
-    {% endfor %}
 </div>
+<div class="img-background">
+    <img src="../static/images/Continental_models-Australia.gif" width="720px">
+ </div>
+
 {% endblock %}
 {% endblock %}
 

@@ -1,7 +1,6 @@
 # 
 # IMPORTS
 # 
-# you might have to import additional things you need
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -10,12 +9,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from flask import Flask, render_template, jsonify, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 #
-# SETUP/CONFIG
+# APP/CONFIG
 #
-# change the classname to reflect the name of your table
-# change the columns to reflect the columns you need
-# each row of your data will be an instance of this class
-
 app = Flask(__name__)
 
 app.config["ENV"] = 'development'
@@ -30,28 +25,20 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #
 # DB SETUP
 # 
-
-# this set's up our db connection to our flask application
 db = SQLAlchemy(app)
 
-# this is our model (aka table)
+# This are our models (tables)
 class Countries(db.Model):
     __tablename__ = "Countries"
     CountryId = db.Column(db.Integer, primary_key=True) ##how to autoincrment on sqlalchemy
     CountryName = db.Column(db.String(255), nullable=False)
     CountryDescription = db.Column(db.Text, nullable=True)
-    #column_3 = db.Column(db.DateTime, nullable=False)
-    #column_4 = db.Column(db.Float, nullable=False)
-    #column_5 = db.Column(db.Boolean, nullable=False)
 
 class WorldCultures(db.Model):
     __tablename__ = "World Cultures"
     CountryGroupId = db.Column(db.Integer, primary_key=True)
     CultureCountryGroup = db.Column(db.String(255), nullable=False)
     CountryGroupURL = db.Column(db.String(255), nullable=False)
-    #column_3 = db.Column(db.DateTime, nullable=False)
-    #column_4 = db.Column(db.Float, nullable=False)
-    #column_5 = db.Column(db.Boolean, nullable=False)
 
 class CultureOfCountries(db.Model):
     __tablename__ = "Culture of Countries"
@@ -68,20 +55,10 @@ class CultureOfCountries(db.Model):
     MajorIndustries = db.Column(db.String(255), nullable = True)
     Trade = db.Column(db.String(255), nullable = True)
     DivsionOfLabor = db.Column(db.String(255), nullable = True)
-    #column_3 = db.Column(db.DateTime, nullable=False)
-    #column_4 = db.Column(db.Float, nullable=False)
-    #column_5 = db.Column(db.Boolean, nullable=False)
     
 #
 # VIEWS 
 #
-
-# set up your index view to show your "home" page
-# it should include:
-# links to any pages you have
-# information about your data
-# information about how to access your data
-# you can choose to output data on this page
 @app.route('/', methods=['GET'])
 def home():
     table = WorldCultures.query.all()
@@ -99,7 +76,7 @@ def visuals():
     table = Countries.query.all()
     table2 = WorldCultures.query.all()
 
-    headings = ['Number of Cultures', 'Number of Continental Cultures']
+    headings = ['# of Cultures', 'Number of Continental Cultures']
     
     d2 = []
     for row in table2[9:]:
@@ -119,8 +96,7 @@ def visuals():
 
     
 
-    return render_template('visuals.html', headings =headings,  data = len(d), data2 = len(d2))
-
+    return render_template('visuals.html', headings =headings,  data = len(d), data2 = len(d2)-2)
 
 @app.route("/tables", methods=['GET'])
 def show_tables():
