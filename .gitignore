@@ -1,0 +1,23 @@
+# General
+__pycache/
+
+#VSCode
+.vscode/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+
+# Python
+*.pyc
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+#Database
+.db

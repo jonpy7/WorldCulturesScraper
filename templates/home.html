@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}World Cultures - Home Page {% endblock %}
+{% block body %}
+{% block header %} {% endblock %}
+
+{% block content %} 
+<h1>
+    World Cultures
+</h1>
+
+<div>
+    {% for row in data %}
+        <div>
+            <h2>{{row.Culture}}: {{row.CultureCountryGroup}}</h2>
+            <a href={{row.CountryGroupURL}}>Learn more here</a>
+            
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% endblock %}
+
+
+
+
+
